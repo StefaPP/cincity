@@ -1,0 +1,16 @@
+.footer {
+  padding-bottom: 120px;
+  padding-top: 90px;
+}
+
+.footer {
+  background-color: #000;
+  color: #9b9b9b;
+  font-size: 12px;
+  -webkit-font-smoothing: auto;
+  -moz-osx-font-smoothing: grayscale;
+  position: relative;
+  padding: 50px 0;
+  width: 100%;
+  z-index: 1;
+}

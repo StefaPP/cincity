@@ -1,0 +1,8 @@
+.welcome { 
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.grow { transition: all .2s ease-in-out; }
+.grow:hover { transform: scale(1.01); }
