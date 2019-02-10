@@ -4,8 +4,14 @@ const API_ROOT = 'http://localhost:4000/api/v1'
 // This makes every API response have the same shape, regardless of how nested it was.
 const callApi = (endpoint) => {
   const fullUrl = (endpoint.indexOf(API_ROOT) === -1) ? API_ROOT + endpoint : endpoint;
-  console.log('URL: ', fullUrl);
-  return fetch(fullUrl)
+  
+  const requestOptions = {
+    headers: { 
+      'Authorization': localStorage.getItem('token'),
+    },
+  };
+
+  return fetch(fullUrl, requestOptions)
     .then(response =>
       response.json().then(json => !response.ok ? Promise.reject(json) : Object.assign({}, json))
     );

@@ -1,0 +1,40 @@
+.topright {
+  position: absolute;
+  float: right;
+  top: 8px;
+  right: 16px;
+  font-size: 18px;
+  z-index: 1;
+}
+
+.btn {
+  margin: 10px;
+  padding: 30px;
+  text-align: center;
+  text-transform: uppercase;
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: white;
+  border-radius: 0 !important;
+ }
+
+ .btn:hover {
+  background-position: right center; /* change the direction of the change here */
+  box-shadow: 0 0 10px #eee;
+}
+
+.ghost-button {
+  display: inline-block;
+  width: 200px;
+  padding: 8px;
+  color: #fff;
+  border: 1px solid #fff;
+  text-align: center;
+  outline: none;
+  text-decoration: none;
+  background: #673AB7;
+}
+
+.ghost-button:hover {
+  color: white;
+}

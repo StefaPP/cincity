@@ -10,13 +10,9 @@ const fetchMovies = () => (dispatch, getState) => dispatch({
   [CALL_API]: {
     types: [MOVIES_REQUEST, MOVIES_SUCCESS, MOVIES_ERROR],
     endpoint: `/movies`,
-    headers: {
-      'Content-Type': 'application/json',
-      Accept: 'application/json'
-    },
     responseType: 'json'
   }
-})
+});
 
 // Fetches a single user from Github API unless it is cached.
 // Relies on Redux Thunk middleware.

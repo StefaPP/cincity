@@ -44,18 +44,15 @@ const initialState = [
   }
 ];
 
-export default function movies(state = initialState, action) {
+export default function movies(state = [], action) {
   switch (action.type) {
     case 'MOVIES_SUCCESS': {
       return [
         ...state,
-        {
-          title: action.title,
-        }
+        ...action.response.body
       ]
     }
     case 'MOVIES_ERROR': {
-      console.log(action);
       return [
         ...state
       ];
