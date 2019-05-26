@@ -18,7 +18,7 @@ class MovieCarousel extends React.Component {
 
   renderCarouselItem = (movie, index) => (
     <div class="carousel-item active">
-      <img class="d-block w-100" src={movie.posterurl} alt={movie.title} />
+      <img class="d-block w-100" src={movie.poster} alt={movie.title} />
     </div>
   );
 
@@ -43,7 +43,7 @@ class MovieCarousel extends React.Component {
         <Slider {...settings}>
           {this.props.movies.map((movie, index) => (
             <div>
-              <img src={movie.posterurl} alt={movie.title} />
+              <img src={movie.poster} alt={movie.title} />
             </div>
           ))}
         </Slider>

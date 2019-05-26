@@ -1,20 +1,26 @@
-const API_ROOT = 'http://localhost:4000/api/v1'
+const API_ROOT = 'https://spp-cinema-api.herokuapp.com'
 
 // Fetches an API response and normalizes the result JSON according to schema.
 // This makes every API response have the same shape, regardless of how nested it was.
-const callApi = (endpoint) => {
+const callApi = async (endpoint, method, body) => {
   const fullUrl = (endpoint.indexOf(API_ROOT) === -1) ? API_ROOT + endpoint : endpoint;
-  
+  console.log(method);
   const requestOptions = {
     headers: { 
       'Authorization': localStorage.getItem('token'),
     },
+    method,
+    body: body && JSON.stringify(body),
   };
 
-  return fetch(fullUrl, requestOptions)
-    .then(response =>
-      response.json().then(json => !response.ok ? Promise.reject(json) : Object.assign({}, json))
-    );
+  try {
+    const response = await fetch(fullUrl, requestOptions);
+    const json = response.json();
+
+    return !response.ok ? Promise.reject(json) : Object.assign({}, json)
+  } catch (err) {
+    throw err;
+  }
 };
 
 // Action key that carries API call info interpreted by this Redux middleware.
@@ -28,7 +34,7 @@ export default store => next => action => {
     return next(action);
   }
 
-  let { endpoint } = callAPI;
+  let { endpoint, body, method } = callAPI;
   const { types } = callAPI;
 
   if (typeof endpoint === 'function') {
@@ -54,7 +60,7 @@ export default store => next => action => {
   const [ requestType, successType, failureType ] = types;
   next(actionWith({ type: requestType }));
 
-  return callApi(endpoint).then(
+  return callApi(endpoint, method, body).then(
     response => next(actionWith({
       response,
       type: successType
